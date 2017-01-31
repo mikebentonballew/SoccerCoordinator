@@ -71,4 +71,19 @@ appendPlayerWith(name: "Herschel Krustofski", height: "45", skill: "YES", guardi
 
 players.count
 
+// Variable for array position. No need for incrementing with what I have as remove is shortening the array.
+var counter: Int = 0
+
+// Simply testing splitting the array of dicts into three teams. Logic to sort later.
+while counter < players.count {
+    teamSharks.append(players.remove(at: counter))
+    teamDragons.append(players.remove(at: counter))
+    teamRaptors.append(players.remove(at: counter))
+}
+
+players
+// Remove this Any Type beyond covered material var playerTest: [String : Any] = ["Name": "Mike Ballew", "Age" : 32.2, "Skill" : true, "Guardian" : "Mickey Mouse"]
+
+print(teamSharks)
+
 
