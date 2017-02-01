@@ -89,7 +89,7 @@ while counter < players.count {
 //print(experiencedPlayers)
 //print(inexperiencedPlayers)
 
-// Should probably look at creatinf functions for these?
+// Should probably look at creatinf functions for these? At least rename counter variables probably change while statement to for statements.
 var experiencedPlayerCount: Int = 0
 var inexperiencedPlayerCount: Int = 0
 
