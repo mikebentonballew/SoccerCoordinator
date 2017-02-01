@@ -35,10 +35,10 @@ import UIKit
  --------------------------------------------------------
 */
 
-print("My first project")
-
 // Initialize Empty Arrays of Definintions representing all players and each team
 var players: [[String: String]] = []
+var experiencedPlayers: [[String: String]] = []
+var inexperiencedPlayers: [[String: String]] = []
 var teamSharks: [[String : String]] = []
 var teamDragons: [[String : String]] = []
 var teamRaptors: [[String : String]] = []
@@ -74,16 +74,68 @@ players.count
 // Variable for array position. No need for incrementing with what I have as remove is shortening the array.
 var counter: Int = 0
 
-// Simply testing splitting the array of dicts into three teams. Logic to sort later.
+// Split beginning array of players into experienced and inexperienced arrays
 while counter < players.count {
+    if players[counter]["Skill"] == "YES" {
+        experiencedPlayers.append(players[counter])
+//        print("Adds to Experienced Array")
+    } else if players[counter]["Skill"] == "NO" {
+        inexperiencedPlayers.append(players[counter])
+//        print("Adds to Inexperienced Array")
+    }
+    counter += 1
+}
+
+//print(experiencedPlayers)
+//print(inexperiencedPlayers)
+
+// Should probably look at creatinf functions for these?
+var experiencedPlayerCount: Int = 0
+var inexperiencedPlayerCount: Int = 0
+
+while experiencedPlayerCount < experiencedPlayers.count {
+    teamSharks.append(experiencedPlayers.remove(at: experiencedPlayerCount))
+    teamDragons.append(experiencedPlayers.remove(at: experiencedPlayerCount))
+    teamRaptors.append(experiencedPlayers.remove(at: experiencedPlayerCount))
+}
+
+while inexperiencedPlayerCount < inexperiencedPlayers.count {
+    teamSharks.append(inexperiencedPlayers.remove(at: inexperiencedPlayerCount))
+    teamDragons.append(inexperiencedPlayers.remove(at: inexperiencedPlayerCount))
+    teamRaptors.append(inexperiencedPlayers.remove(at: inexperiencedPlayerCount))
+}
+
+teamRaptors
+
+
+// Simply testing splitting the array of dicts into three teams. Logic to sort later.
+/*while counter < players.count {
     teamSharks.append(players.remove(at: counter))
     teamDragons.append(players.remove(at: counter))
     teamRaptors.append(players.remove(at: counter))
 }
+*/
 
-players
-// Remove this Any Type beyond covered material var playerTest: [String : Any] = ["Name": "Mike Ballew", "Age" : 32.2, "Skill" : true, "Guardian" : "Mickey Mouse"]
 
-print(teamSharks)
+// Keep the follwing for use in extra credit possibly
+// var playerTest: [String : Any] = ["Name": "Mike Ballew", "Age" : 32.2, "Skill" : true, "Guardian" : "Mickey Mouse"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
