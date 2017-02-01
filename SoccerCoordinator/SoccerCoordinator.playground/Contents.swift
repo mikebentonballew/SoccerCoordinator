@@ -12,26 +12,26 @@ import UIKit
 /*
  --------------------------------------------------------
  Soccer Team Data
- Team Player Height Skilled Guardian
+ Team Player        Height  Skilled Guardian
  --------------------------------------------------------
- Joe Smith          42	YES	Jim and Jan Smith
- Jill Tanner        36	YES	Clara Tanner
- Bill Bon           43	YES	Sara and Jenny Bon
- Eva Gordon         45	NO	Wendy and Mike Gordon
- Matt Gill          40	NO	Charles and Sylvia Gill
- Kimmy Stein        41	NO	Bill and Hillary Stein
- Sammy Adams        45	NO	Jeff Adams
- Karl Saygan        42	YES	Heather Bledsoe
- Suzane Greenberg	44	YES	Henrietta Dumas
- Sal Dali           41	NO	Gala Dali
- Joe Kavalier       39	NO	Sam and Elaine Kavalier
- Ben Finkelstein	44	NO	Aaron and Jill Finkelstein
- Diego Soto         41	YES	Robin and Sarika Soto
- Chloe Alaska       47	NO	David and Jamie Alaska
- Arnold Willis      43	NO	Claire Willis
- Phillip Helm       44	YES	Thomas Helm and Eva Jones
- Les Clay           42	YES	Wynonna Brown
- Herschel Krustofski	45	YES	Hyman and Rachel Krustofski
+ Joe Smith              42	YES     Jim and Jan Smith
+ Jill Tanner            36	YES     Clara Tanner
+ Bill Bon               43	YES     Sara and Jenny Bon
+ Eva Gordon             45	NO      Wendy and Mike Gordon
+ Matt Gill              40	NO      Charles and Sylvia Gill
+ Kimmy Stein            41	NO      Bill and Hillary Stein
+ Sammy Adams            45	NO      Jeff Adams
+ Karl Saygan            42	YES     Heather Bledsoe
+ Suzane Greenberg       44	YES     Henrietta Dumas
+ Sal Dali               41	NO      Gala Dali
+ Joe Kavalier           39	NO      Sam and Elaine Kavalier
+ Ben Finkelstein        44	NO      Aaron and Jill Finkelstein
+ Diego Soto             41	YES     Robin and Sarika Soto
+ Chloe Alaska           47	NO      David and Jamie Alaska
+ Arnold Willis          43	NO      Claire Willis
+ Phillip Helm           44	YES     Thomas Helm and Eva Jones
+ Les Clay               42	YES     Wynonna Brown
+ Herschel Krustofski	45	YES     Hyman and Rachel Krustofski
  --------------------------------------------------------
 */
 
@@ -42,6 +42,7 @@ var inexperiencedPlayers: [[String: String]] = []
 var teamSharks: [[String : String]] = []
 var teamDragons: [[String : String]] = []
 var teamRaptors: [[String : String]] = []
+var letters: [String] = []
 
 // Append player data to players array
 func appendPlayerWith(name: String, height: String, skill: String, guardian: String) -> () {
@@ -69,52 +70,55 @@ appendPlayerWith(name: "Phillip Helm", height: "44", skill: "YES", guardian: "Th
 appendPlayerWith(name: "Les Clay", height: "45", skill: "YES", guardian: "Wynonna Brown")
 appendPlayerWith(name: "Herschel Krustofski", height: "45", skill: "YES", guardian: "Hyman and Rachel Krustofski")
 
-players.count
-
-// Variable for array position. No need for incrementing with what I have as remove is shortening the array.
 var counter: Int = 0
 
 // Split beginning array of players into experienced and inexperienced arrays
 while counter < players.count {
     if players[counter]["Skill"] == "YES" {
         experiencedPlayers.append(players[counter])
-//        print("Adds to Experienced Array")
     } else if players[counter]["Skill"] == "NO" {
         inexperiencedPlayers.append(players[counter])
-//        print("Adds to Inexperienced Array")
     }
     counter += 1
 }
 
-//print(experiencedPlayers)
-//print(inexperiencedPlayers)
+// Should probably look at creatinf functions for these? At least rename counter variables probably change while statement to for statements
 
-// Should probably look at creatinf functions for these? At least rename counter variables probably change while statement to for statements.
-var experiencedPlayerCount: Int = 0
-var inexperiencedPlayerCount: Int = 0
+var experiencedPlayerCounter: Int = 0
 
-while experiencedPlayerCount < experiencedPlayers.count {
-    teamSharks.append(experiencedPlayers.remove(at: experiencedPlayerCount))
-    teamDragons.append(experiencedPlayers.remove(at: experiencedPlayerCount))
-    teamRaptors.append(experiencedPlayers.remove(at: experiencedPlayerCount))
+while experiencedPlayerCounter < experiencedPlayers.count {
+    teamSharks.append(experiencedPlayers.remove(at: 0))
+    teamDragons.append(experiencedPlayers.remove(at: 0))
+    teamRaptors.append(experiencedPlayers.remove(at: 0))
+}
+ 
+while 0 < inexperiencedPlayers.count {
+    teamSharks.append(inexperiencedPlayers.remove(at: 0))
+    teamDragons.append(inexperiencedPlayers.remove(at: 0))
+    teamRaptors.append(inexperiencedPlayers.remove(at: 0))
 }
 
-while inexperiencedPlayerCount < inexperiencedPlayers.count {
-    teamSharks.append(inexperiencedPlayers.remove(at: inexperiencedPlayerCount))
-    teamDragons.append(inexperiencedPlayers.remove(at: inexperiencedPlayerCount))
-    teamRaptors.append(inexperiencedPlayers.remove(at: inexperiencedPlayerCount))
-}
-
-teamRaptors
-
-
-// Simply testing splitting the array of dicts into three teams. Logic to sort later.
-/*while counter < players.count {
-    teamSharks.append(players.remove(at: counter))
-    teamDragons.append(players.remove(at: counter))
-    teamRaptors.append(players.remove(at: counter))
-}
+/*
+ -------------------------------------------------------------
+ Generate Letters to each parent/guardian.
+ Dragons - March 17, 1pm
+ Sharks - March 17, 3pm
+ Raptors - March 18, 1pm
+ -------------------------------------------------------------
 */
+
+func writeLetter(array: [[String : String]]) -> ([String]) {
+    var teamLetters: [String] = []
+    var teamCounter: Int = 0
+    while teamCounter < array.count {
+        array[teamCounter]
+        print("printing letters")
+        teamCounter += 1
+    }
+    return teamLetters
+}
+
+writeLetter(array: teamSharks)
 
 
 // Keep the follwing for use in extra credit possibly
