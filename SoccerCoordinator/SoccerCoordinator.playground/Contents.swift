@@ -82,8 +82,7 @@ while counter < players.count {
     counter += 1
 }
 
-// Should probably look at creatinf functions for these? At least rename counter variables probably change while statement to for statements
-
+// This definitely fails unless working with arrays of sizes multiples of 3
 var experiencedPlayerCounter: Int = 0
 
 while experiencedPlayerCounter < experiencedPlayers.count {
@@ -104,15 +103,20 @@ while 0 < inexperiencedPlayers.count {
  Dragons - March 17, 1pm
  Sharks - March 17, 3pm
  Raptors - March 18, 1pm
+ 
+ Lettes to include: the player’s name, guardian names, team name, and date/time of their first team practice.
  -------------------------------------------------------------
 */
 
 func writeLetter(array: [[String : String]]) -> ([String]) {
     var teamLetters: [String] = []
+    var memberName: String
+    var memberGuardian: String
     var teamCounter: Int = 0
     while teamCounter < array.count {
-        array[teamCounter]
-        print("printing letters")
+        memberName = array[teamCounter]["Name"]!
+        memberGuardian = array[teamCounter]["Guardian"]!
+        print("Dear \(memberGuardian): \n\n We would like to welcome you and \(memberName) as the newest members of team XXXXXXXXX. \n\n Please note that the first practice will be on DATE.\n\n Thank You,\n   SportsStaff")
         teamCounter += 1
     }
     return teamLetters
@@ -123,7 +127,6 @@ writeLetter(array: teamSharks)
 
 // Keep the follwing for use in extra credit possibly
 // var playerTest: [String : Any] = ["Name": "Mike Ballew", "Age" : 32.2, "Skill" : true, "Guardian" : "Mickey Mouse"]
-
 
 
 
