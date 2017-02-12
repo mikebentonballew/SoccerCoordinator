@@ -130,7 +130,7 @@ func writeLetterFor(array: [[String : Any]], team: String, date: String) -> ([St
     while teamCounter < array.count {
         memberName = array[teamCounter]["Name"] as! String
         memberGuardian = array[teamCounter]["Guardian"] as! String
-        teamLetters.append("Dear \(memberGuardian): \n\n We would like to welcome you and \(memberName) as the newest members of \(team). \n\n Please note that the first practice will be on \(date).\n\n Thank You,\n   SportsStaff")
+        teamLetters.append("Dear \(memberGuardian): \n\n We would like to welcome you and \(memberName) as the newest members of \(team). \n\n Please note that the first practice will be on \(date).\n\n Thank You,\n   SportsStaff\n\n")
         teamCounter += 1
     }
     return teamLetters
@@ -140,6 +140,10 @@ func writeLetterFor(array: [[String : Any]], team: String, date: String) -> ([St
 letters = writeLetterFor(array: teamSharks, team: "Team Sharks", date: "March 17, 3pm")
 letters.append(contentsOf: writeLetterFor(array: teamRaptors, team: "Team Raptors", date: "March 18, 1pm"))
 letters.append(contentsOf: writeLetterFor(array: teamDragons, team: "Team Dragons", date: "March 17, 1pm"))
+
+for letter in letters{
+    print(letter)
+}
 
 /*
  -------------------------------------------------------------
