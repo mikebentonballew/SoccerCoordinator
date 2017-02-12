@@ -141,6 +141,13 @@ letters = writeLetterFor(array: teamSharks, team: "Team Sharks", date: "March 17
 letters.append(contentsOf: writeLetterFor(array: teamRaptors, team: "Team Raptors", date: "March 18, 1pm"))
 letters.append(contentsOf: writeLetterFor(array: teamDragons, team: "Team Dragons", date: "March 17, 1pm"))
 
+/*
+ -------------------------------------------------------------
+ Extra Credit
+ Function to take an array of players and return the average height of team.
+ -------------------------------------------------------------
+*/
+
 func getAverageTeamMemberHeight(array: [[String: Any]]) -> Double {
     var numberOfMembers: Double = 0.0
     var sumOfMemberHeights: Double = 0.0
