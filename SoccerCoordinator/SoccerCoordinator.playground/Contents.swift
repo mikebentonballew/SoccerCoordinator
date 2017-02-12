@@ -36,52 +36,54 @@ import UIKit
 */
 
 // Initialize Empty Arrays of Definintions representing all players and each team
-var players = [[String: String]]()
-var experiencedPlayers = [[String: String]]()
-var inexperiencedPlayers = [[String: String]]()
-var teamSharks = [[String : String]]()
-var teamDragons = [[String: String]]()
-var teamRaptors = [[String: String]]()
+var players = [[String: Any]]()
+var experiencedPlayers = [[String: Any]]()
+var inexperiencedPlayers = [[String: Any]]()
+var teamSharks = [[String : Any]]()
+var teamDragons = [[String: Any]]()
+var teamRaptors = [[String: Any]]()
 var letters: [String] = []
 
 // Append player data to players array
-func appendPlayerWith(name: String, height: String, skill: String, guardian: String) -> () {
+func appendPlayerWith(name: Any, height: Any, skill: Any, guardian: Any) -> () {
     players.append(["Name" : name, "Height" : height, "Skill" : skill, "Guardian" : guardian])
 }
 
 // Pass the player data one by one to the function
 // No more efficient that just manually appending, but I wanted more practice with functions
-appendPlayerWith(name: "Joe Smith", height: "42", skill: "YES", guardian: "Jim and Jan Smith")
-appendPlayerWith(name: "Jill Tanner", height: "36", skill: "YES", guardian: "Clara Tanner")
-appendPlayerWith(name: "Bill Bon", height: "43", skill: "YES", guardian: "Sara and Jenny Bon")
-appendPlayerWith(name: "Eva Gordon", height: "45", skill: "NO", guardian: "Wendy and Mike Gordon")
-appendPlayerWith(name: "Matt Gill", height: "40", skill: "NO", guardian: "Charles and Sylvia Gill")
-appendPlayerWith(name: "Kimmy Stein", height: "41", skill: "NO", guardian: "Bill and Hillary Stein")
-appendPlayerWith(name: "Sammy Adams", height: "45", skill: "NO", guardian: "Jeff Adams")
-appendPlayerWith(name: "Karl Saygan", height: "42", skill: "YES", guardian: "Heather Bledsoe")
-appendPlayerWith(name: "Suzane Greenberg", height: "44", skill: "YES", guardian: "Henrietta Dumas")
-appendPlayerWith(name: "Sal Dali", height: "41", skill: "NO", guardian: "Gala Dali")
-appendPlayerWith(name: "Joe Kavalier", height: "39", skill: "NO", guardian: "Sam and Elaine Kavalier")
-appendPlayerWith(name: "Ben Finkelstein", height: "44", skill: "NO", guardian: "Aaron and Jill Finkelstein")
-appendPlayerWith(name: "Diego Soto", height: "41", skill: "YES", guardian: "Robin and Sarika Soto")
-appendPlayerWith(name: "Chloe Alaska", height: "47", skill: "NO", guardian: "David and Jamie Alaska")
-appendPlayerWith(name: "Arnold Willis", height: "43", skill: "NO", guardian: "Claire Willis")
-appendPlayerWith(name: "Phillip Helm", height: "44", skill: "YES", guardian: "Thomas Helm and Eva Jones")
-appendPlayerWith(name: "Les Clay", height: "45", skill: "YES", guardian: "Wynonna Brown")
-appendPlayerWith(name: "Herschel Krustofski", height: "45", skill: "YES", guardian: "Hyman and Rachel Krustofski")
-
-var counter: Int = 0
+appendPlayerWith(name: "Joe Smith", height: 42.0, skill: true, guardian: "Jim and Jan Smith")
+appendPlayerWith(name: "Jill Tanner", height: 36.0, skill: true, guardian: "Clara Tanner")
+appendPlayerWith(name: "Bill Bon", height: 43.0, skill: true, guardian: "Sara and Jenny Bon")
+appendPlayerWith(name: "Eva Gordon", height: 45.0, skill: false, guardian: "Wendy and Mike Gordon")
+appendPlayerWith(name: "Matt Gill", height: 40.0, skill: false, guardian: "Charles and Sylvia Gill")
+appendPlayerWith(name: "Kimmy Stein", height: 41.0, skill: false, guardian: "Bill and Hillary Stein")
+appendPlayerWith(name: "Sammy Adams", height: 45.0, skill: false, guardian: "Jeff Adams")
+appendPlayerWith(name: "Karl Saygan", height: 42.0, skill: true, guardian: "Heather Bledsoe")
+appendPlayerWith(name: "Suzane Greenberg", height: 44.0, skill: true, guardian: "Henrietta Dumas")
+appendPlayerWith(name: "Sal Dali", height: 41.0, skill: false, guardian: "Gala Dali")
+appendPlayerWith(name: "Joe Kavalier", height: 39.0, skill: false, guardian: "Sam and Elaine Kavalier")
+appendPlayerWith(name: "Ben Finkelstein", height: 44.0, skill: false, guardian: "Aaron and Jill Finkelstein")
+appendPlayerWith(name: "Diego Soto", height: 41.0, skill: true, guardian: "Robin and Sarika Soto")
+appendPlayerWith(name: "Chloe Alaska", height: 47.0, skill: false, guardian: "David and Jamie Alaska")
+appendPlayerWith(name: "Arnold Willis", height: 43.0, skill: false, guardian: "Claire Willis")
+appendPlayerWith(name: "Phillip Helm", height: 44.0, skill: true, guardian: "Thomas Helm and Eva Jones")
+appendPlayerWith(name: "Les Clay", height: 45.0, skill: true, guardian: "Wynonna Brown")
+appendPlayerWith(name: "Herschel Krustofski", height: 45.0, skill: true, guardian: "Hyman and Rachel Krustofski")
 
 // Split beginning array of players into experienced and inexperienced arrays
+var counter: Int = 0
 while counter < players.count {
-    if players[counter]["Skill"] == "YES" {
+    if players[counter]["Skill"] as! Bool == true {
         experiencedPlayers.append(players[counter])
-    } else if players[counter]["Skill"] == "NO" {
+    } else if players[counter]["Skill"] as! Bool == false {
         inexperiencedPlayers.append(players[counter])
     }
     counter += 1
 }
 
+// Sort experienced and inexperienced groups in reverse order of one another
+experiencedPlayers.sort(by: {$0["Height"] as! Double > $1["Height"] as! Double})
+inexperiencedPlayers.sort(by: {$1["Height"] as! Double > $0["Height"] as! Double})
 
 // While the experienced and inexperienced arrays of players are not empty, iterate through and append to team arrays
 while 0 < experiencedPlayers.count {
@@ -120,14 +122,14 @@ while 0 < inexperiencedPlayers.count {
  -------------------------------------------------------------
 */
 
-func writeLetterFor(array: [[String : String]], team: String, date: String) -> ([String]) {
+func writeLetterFor(array: [[String : Any]], team: String, date: String) -> ([String]) {
     var teamLetters: [String] = []
     var memberName: String
     var memberGuardian: String
     var teamCounter: Int = 0
     while teamCounter < array.count {
-        memberName = array[teamCounter]["Name"]!
-        memberGuardian = array[teamCounter]["Guardian"]!
+        memberName = array[teamCounter]["Name"] as! String
+        memberGuardian = array[teamCounter]["Guardian"] as! String
         teamLetters.append("Dear \(memberGuardian): \n\n We would like to welcome you and \(memberName) as the newest members of \(team). \n\n Please note that the first practice will be on \(date).\n\n Thank You,\n   SportsStaff")
         teamCounter += 1
     }
@@ -139,9 +141,21 @@ letters = writeLetterFor(array: teamSharks, team: "Team Sharks", date: "March 17
 letters.append(contentsOf: writeLetterFor(array: teamRaptors, team: "Team Raptors", date: "March 18, 1pm"))
 letters.append(contentsOf: writeLetterFor(array: teamDragons, team: "Team Dragons", date: "March 17, 1pm"))
 
+func getAverageTeamMemberHeight(array: [[String: Any]]) -> Double {
+    var numberOfMembers: Double = 0.0
+    var sumOfMemberHeights: Double = 0.0
+    for teamMember in array {
+        sumOfMemberHeights += teamMember["Height"] as! Double
+        numberOfMembers += 1
+    }
+    print(sumOfMemberHeights/numberOfMembers)
+    return (sumOfMemberHeights / numberOfMembers)
+}
 
-
-
+// Check Average Team Heights
+getAverageTeamMemberHeight(array: teamRaptors)
+getAverageTeamMemberHeight(array: teamDragons)
+getAverageTeamMemberHeight(array: teamSharks)
 
 
 
