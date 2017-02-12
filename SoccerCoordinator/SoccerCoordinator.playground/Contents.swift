@@ -43,7 +43,6 @@ var teamSharks = [[String : String]]()
 var teamDragons = [[String: String]]()
 var teamRaptors = [[String: String]]()
 var letters: [String] = []
-var teams = [Any]()
 
 // Append player data to players array
 func appendPlayerWith(name: String, height: String, skill: String, guardian: String) -> () {
@@ -83,38 +82,32 @@ while counter < players.count {
     counter += 1
 }
 
-// This definitely fails unless working with arrays of sizes multiples of 3
-var experiencedPlayerCounter: Int = 0
 
-while experiencedPlayerCounter < experiencedPlayers.count {
-    teamSharks.append(experiencedPlayers.remove(at: 0))
-    teamDragons.append(experiencedPlayers.remove(at: 0))
-    teamRaptors.append(experiencedPlayers.remove(at: 0))
-}
-
-
-var pCounter: Int = 0
-var numberOfTeams: Int = 3 // MAGIC NUMBER I KNOW :)
-var tPosition: Int = 0
-
-while pCounter < inexperiencedPlayers.count {
-    tPosition = 0
-    while tPosition < numberOfTeams {
-        print(tPosition)
-        print(pCounter)
-        tPosition += 1
-        pCounter += 1
+// While the experienced and inexperienced arrays of players are not empty, iterate through and append to team arrays
+while 0 < experiencedPlayers.count {
+    if experiencedPlayers.count != 0 {
+        teamSharks.append(experiencedPlayers.remove(at: 0))
+    }
+    if experiencedPlayers.count != 0 {
+        teamDragons.append(experiencedPlayers.remove(at: 0))
+    }
+    if experiencedPlayers.count != 0 {
+        teamRaptors.append(experiencedPlayers.remove(at: 0))
     }
 }
 
-
-/*
 while 0 < inexperiencedPlayers.count {
-    teamSharks.append(inexperiencedPlayers.remove(at: 0))
-    teamDragons.append(inexperiencedPlayers.remove(at: 0))
-    teamRaptors.append(inexperiencedPlayers.remove(at: 0))
+    if inexperiencedPlayers.count != 0 {
+        teamSharks.append(inexperiencedPlayers.remove(at: 0))
+    }
+    if inexperiencedPlayers.count != 0 {
+        teamDragons.append(inexperiencedPlayers.remove(at: 0))
+    }
+    if inexperiencedPlayers.count != 0 {
+        teamRaptors.append(inexperiencedPlayers.remove(at: 0))
+    }
 }
-*/
+
 
 /*
  -------------------------------------------------------------
@@ -142,12 +135,9 @@ func writeLetterFor(array: [[String : String]], team: String, date: String) -> (
 }
 
 // Pass each team array along with team name and practice date to the function to write a letter.
-letters += writeLetterFor(array: teamSharks, team: "Team Sharks", date: "March 17, 3pm")
-letters += writeLetterFor(array: teamDragons, team: "Team Dragons", date: "March 17, 1pm")
-letters += writeLetterFor(array: teamRaptors, team: "Team Raptors", date: "March 18, 1pm")
-
-
-
+letters = writeLetterFor(array: teamSharks, team: "Team Sharks", date: "March 17, 3pm")
+letters.append(contentsOf: writeLetterFor(array: teamRaptors, team: "Team Raptors", date: "March 18, 1pm"))
+letters.append(contentsOf: writeLetterFor(array: teamDragons, team: "Team Dragons", date: "March 17, 1pm"))
 
 
 
