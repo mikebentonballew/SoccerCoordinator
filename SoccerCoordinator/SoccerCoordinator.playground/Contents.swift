@@ -45,7 +45,7 @@ var teamRaptors = [[String: Any]]()
 var letters: [String] = []
 
 // Append player data to players array
-func appendPlayerWith(name: Any, height: Any, skill: Any, guardian: Any) -> () {
+func appendPlayerWith(name: String, height: Double, skill: Bool, guardian: String) -> () {
     players.append(["Name" : name, "Height" : height, "Skill" : skill, "Guardian" : guardian])
 }
 
